@@ -1,0 +1,32 @@
+[
+{
+"Type": "fulltime",
+"Name": "Isaak Newton",
+"Duration": 1.5
+},
+{
+"Type": "contractor",
+"Name": "Nikola Tesla",
+"Duration": 0.5
+},
+{
+"Type": "temporary",
+"Name": "Alfred Nobel",
+"Duration": 1.2
+},
+{
+"Type": "fulltime",
+"Name": "Albert Einstein",
+"Duration": 2
+},
+{
+"Type": "contractor",
+"Name": "Marie Curie",
+"Duration": 0.8
+},
+{
+"Type": "temporary",
+"Name": "Ivan Mendeleev",
+"Duration": 1.2
+}
+]
