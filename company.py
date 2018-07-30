@@ -1,11 +1,13 @@
+import json
 
 #constants
 # ServiceForVacation is a number of years of service to accrue vacation of VacationDays duration
 SERVICE_FOR_VACATION = 1
 VACATION_DAYS = 5
+FILE_LOCATION = "employees_data_set.json"
 
 # Short representation of emploee type
-EmployeeTypeRepresentation = {"fulltime": "FT",
+EMPLOYEE_REPRESENTATION = {"fulltime": "FT",
                               "contractor": "C",
                               "temporary": "T"}
 
@@ -30,12 +32,12 @@ class Employee(object):
         return None
 
     def print_brief(self):
-        print("Name: {}[{}], Duration: {} years, Vacation Accrued: {} {}."
+        print("Name: {}[{}], Duration: {} years, Vacation Accrued: {} {}"
               "".format(self.get_name(),
-                        EmployeeTypeRepresentation[self.get_type()],
+                        EMPLOYEE_REPRESENTATION[self.get_type()],
                         self.get_duration(),
                         self.get_vacation(),
-                        " days" if self.get_vacation() else ""))
+                        "days" if self.get_vacation() else ""))
 
 class Factory(Employee):
 
@@ -64,13 +66,19 @@ class Temporary(Employee):
     def __init__(self, *args):
         super().__init__(*args)
 
+# open json data set file and save it's representation
+with open(FILE_LOCATION) as data_set_file:
+    employee_json_list = json.load(data_set_file)
 
-new_mem = Factory("temporary","Andy", 1.5)
-new_mem.print_brief()
-new_mem = Factory("contractor","John", 0.5)
-new_mem.print_brief()
-new_mem = Factory("fulltime","Myroslava", 2.5)
-new_mem.print_brief()
+list_of_employees = []
 
+# add every new employee form json to the employees list
+for employee in employee_json_list:
+    new_mem = Factory(employee["Type"], employee["Name"], employee["Duration"],)
+    list_of_employees.append(new_mem)
+
+# print employee brief information
+for employee in list_of_employees:
+    employee.print_brief()
 
 
